@@ -6,13 +6,12 @@
     <script>
       var socket = io.connect('/');
 
-      socket.on('ping', function() {
-        console.log('ping');
+      socket.on('pong', function() {
+        console.log('pong');
       });
 
       setInterval(function() {
-        console.log('pong?');
-        socket.emit('pong');
+        socket.emit('ping');
       }, 1000);
     </script>
   </head>
