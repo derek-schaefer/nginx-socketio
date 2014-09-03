@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nginx Websockets</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io.connect('/');
+
+      socket.on('ping', function() {
+        console.log('ping');
+      });
+
+      setInterval(function() {
+        console.log('pong?');
+        socket.emit('pong');
+      }, 1000);
+    </script>
+  </head>
+</html>
