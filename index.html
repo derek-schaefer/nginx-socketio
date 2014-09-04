@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Nginx Websockets</title>
+    <title>Websocket Proxy</title>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      var socket = io.connect('/');
+      window.onload = function() {
+        var socket = io.connect('/');
+        var responses = document.getElementById('responses');
 
-      socket.on('pong', function() {
-        console.log('pong');
-      });
+        socket.on('pong', function() {
+          var response = document.createElement('div');
+          response.appendChild(document.createTextNode('pong'));
+          responses.appendChild(response);
+        });
 
-      setInterval(function() {
-        socket.emit('ping');
-      }, 1000);
+        setInterval(function() {
+          socket.emit('ping');
+        }, 1000);
+      };
     </script>
   </head>
+  <body>
+    <h2>Responses</h2>
+    <div id="responses"></div>
+  </body>
 </html>
